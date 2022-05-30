@@ -29,7 +29,7 @@ android {
     compileSdkVersion(Versions.targetSdk)
     
     defaultConfig {
-        applicationId = "com.example.reactiveprogramming"
+        applicationId = "com.example.movielist"
         minSdkVersion(Versions.minSdk)
         targetSdkVersion(Versions.targetSdk)
         versionCode = appVersionCode
