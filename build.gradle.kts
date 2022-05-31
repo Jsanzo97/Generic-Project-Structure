@@ -16,7 +16,6 @@ buildscript {
         classpath(BuildTools.androidGradlePlugin)
         classpath(BuildTools.kotlinGradlePlugin)
         classpath(BuildTools.gradleVersions)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle.kts files
     }

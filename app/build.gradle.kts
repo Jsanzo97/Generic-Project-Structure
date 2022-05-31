@@ -38,6 +38,8 @@ android {
         resourceConfigurations.add("en")
         resourceConfigurations.add("es")
         multiDexEnabled = true
+        buildConfigField("String", "SERVER_ENDPOINT", "\"https://api.themoviedb.org/3/movie/\"")
+        buildConfigField("String", "SERVER_API_KEY", "\"3ce5fa18330f82a0e8c84eea49508b46\"")
     }
 
     signingConfigs {
@@ -106,6 +108,7 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":database"))
     implementation(project(":common"))
+    implementation(project(":remote"))
     implementation(Libs.kotlinStdlib)
     implementation(Libs.coroutines)
     implementation(Libs.coroutinesAndroid)
@@ -128,8 +131,12 @@ dependencies {
     implementation(Libs.roomKtx)
     implementation(Libs.threeTenABP)
     implementation(Libs.timber)
+    implementation(Libs.okhttp)
+    implementation(Libs.retrofit)
+    implementation(Libs.retrofitMoshi)
 
     debugImplementation(DebugLibs.debugDb)
+    debugImplementation(DebugLibs.chucker)
 
     kapt(Kapt.lifecycle)
 }

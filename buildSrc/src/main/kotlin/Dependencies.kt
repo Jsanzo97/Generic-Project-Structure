@@ -38,6 +38,11 @@ object Versions {
     const val timber = "4.7.1"
     const val koin = "2.0.1"
 
+    const val moshi = "1.12.0"
+    const val retrofit = "2.6.2"
+    const val okhttp = "4.2.1"
+    const val chucker = "3.0.1"
+
     const val debugDb = "1.0.6"
 }
 
@@ -71,14 +76,21 @@ object Libs {
     const val koinAndroidScope = "org.koin:koin-androidx-scope:${Versions.koin}"
     const val koinAndroidViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
-
+    const val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofitMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+    const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
 }
 
 object Kapt {
     const val lifecycle = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
     const val room = "androidx.room:room-compiler:${Versions.room}"
+    const val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
 }
 
 object DebugLibs {
     const val debugDb = "com.amitshekhar.android:debug-db:${Versions.debugDb}"
+    const val chucker = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
+    const val chuckerNoOp = "com.github.chuckerteam.chucker:library-no-op:${Versions.chucker}"
+
 }
