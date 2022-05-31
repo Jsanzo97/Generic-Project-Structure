@@ -41,6 +41,8 @@ object Versions {
     const val okhttp = "4.2.1"
     const val chucker = "3.0.1"
 
+    const val gson = "2.8.2"
+
     const val debugDb = "1.0.6"
 }
 
@@ -76,6 +78,7 @@ object Libs {
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retrofitMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
+    const val gson = "com.google.code.gson:gson:${Versions.gson}"
 }
 
 object Kapt {

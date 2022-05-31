@@ -49,6 +49,7 @@ dependencies {
     implementation(Libs.coroutines)
     implementation(Libs.arrowCore)
     implementation(Libs.roomKtx)
+    implementation(Libs.gson)
 
     kapt(Kapt.room)
 }

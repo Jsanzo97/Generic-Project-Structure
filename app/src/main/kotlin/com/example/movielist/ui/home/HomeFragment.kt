@@ -40,9 +40,9 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
                 when (state) {
                     is InitialState -> { /* no-op */ }
                     is RetrievingMoviesFromRemote -> showProgressDialog()
-                    is MoviesRetrievedFromRemote -> {
+                    is MovieRetrievedFromRemote -> {
                         hideProgressDialog()
-                        updateMovies(state.data.results)
+                        updateMovies(state.data)
                     }
                     else -> { /* no-op */ }
                 }
@@ -50,14 +50,14 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
         }
     }
 
-    private fun updateMovies(movies: List<MovieResult>) {
+    private fun updateMovies(movieList: List<MovieResult>) {
         var adapter = movieListRecycler.adapter
         if (adapter != null) {
             adapter = adapter as HomeMovieAdapter
-            adapter.onNewData(movies)
+            adapter.onNewData(movieList)
             movieListRecycler.adapter = adapter
         } else {
-            movieListRecycler.adapter = HomeMovieAdapter(movies.toMutableList())
+            movieListRecycler.adapter = HomeMovieAdapter(movieList.toMutableList())
         }
     }
 

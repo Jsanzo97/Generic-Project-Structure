@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.GetMoviesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -21,8 +22,10 @@ class HomeViewModel(
                 ifLeft = { error ->
                     _homeViewModelStateFlow.value = ErrorOnOperation(error.toString())
                 },
-                ifRight = { movie ->
-                    _homeViewModelStateFlow.value = MoviesRetrievedFromRemote(movie)
+                ifRight = { flow ->
+                    flow.collectLatest { movieResultList ->
+                        _homeViewModelStateFlow.value = MovieRetrievedFromRemote(movieResultList)
+                    }
                 }
             )
         }

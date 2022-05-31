@@ -30,11 +30,10 @@ class HomeMovieAdapter(
     fun onNewData(newMovieList: List<MovieResult>) {
         val diffResult = DiffUtil.calculateDiff(HomeMoviesDiffUtilCallback(newMovieList, movieList))
         diffResult.dispatchUpdatesTo(this)
+
         movieList.clear()
         movieList.addAll(newMovieList)
     }
-
-    fun getMovieList() = movieList
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var movieTitleLabel: MaterialTextView = itemView.findViewById(R.id.movie_title_value_text)

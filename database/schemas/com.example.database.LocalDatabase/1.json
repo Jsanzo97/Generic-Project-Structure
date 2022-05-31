@@ -2,138 +2,100 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b473628f322208a8fce1f159694ce869",
+    "identityHash": "a117d496f2a82d3f3b052a90495883ed",
     "entities": [
       {
-        "tableName": "Player",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `age` INTEGER NOT NULL, `team_ID` INTEGER NOT NULL, PRIMARY KEY(`name`, `team_ID`), FOREIGN KEY(`team_ID`) REFERENCES `Team`(`team_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "tableName": "Movies",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`posterPath` TEXT, `adult` INTEGER NOT NULL, `overview` TEXT NOT NULL, `releaseDate` TEXT NOT NULL, `genreIds` TEXT NOT NULL, `id` INTEGER NOT NULL, `originalTitle` TEXT NOT NULL, `originalLanguage` TEXT NOT NULL, `title` TEXT NOT NULL, `backdropPath` TEXT, `popularity` REAL NOT NULL, `voteCount` INTEGER NOT NULL, `video` INTEGER NOT NULL, `voteAverage` REAL NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
-            "fieldPath": "name",
-            "columnName": "name",
+            "fieldPath": "posterPath",
+            "columnName": "posterPath",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "adult",
+            "columnName": "adult",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "overview",
+            "columnName": "overview",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "age",
-            "columnName": "age",
+            "fieldPath": "releaseDate",
+            "columnName": "releaseDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "genreIds",
+            "columnName": "genreIds",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "teamId",
-            "columnName": "team_ID",
+            "fieldPath": "originalTitle",
+            "columnName": "originalTitle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originalLanguage",
+            "columnName": "originalLanguage",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "backdropPath",
+            "columnName": "backdropPath",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "popularity",
+            "columnName": "popularity",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "voteCount",
+            "columnName": "voteCount",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "video",
+            "columnName": "video",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "voteAverage",
+            "columnName": "voteAverage",
+            "affinity": "REAL",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "name",
-            "team_ID"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [
-          {
-            "name": "index_Player_team_ID",
-            "unique": false,
-            "columnNames": [
-              "team_ID"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_Player_team_ID` ON `${TABLE_NAME}` (`team_ID`)"
-          }
-        ],
-        "foreignKeys": [
-          {
-            "table": "Team",
-            "onDelete": "CASCADE",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "team_ID"
-            ],
-            "referencedColumns": [
-              "team_id"
-            ]
-          }
-        ]
-      },
-      {
-        "tableName": "Sport",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `num_of_players` INTEGER NOT NULL, `team_ID` INTEGER NOT NULL, PRIMARY KEY(`name`, `team_ID`), FOREIGN KEY(`team_ID`) REFERENCES `Team`(`team_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
-        "fields": [
-          {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "numOfPlayers",
-            "columnName": "num_of_players",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "teamId",
-            "columnName": "team_ID",
-            "affinity": "INTEGER",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "name",
-            "team_ID"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [
-          {
-            "name": "index_Sport_team_ID",
-            "unique": false,
-            "columnNames": [
-              "team_ID"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_Sport_team_ID` ON `${TABLE_NAME}` (`team_ID`)"
-          }
-        ],
-        "foreignKeys": [
-          {
-            "table": "Team",
-            "onDelete": "CASCADE",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "team_ID"
-            ],
-            "referencedColumns": [
-              "team_id"
-            ]
-          }
-        ]
-      },
-      {
-        "tableName": "Team",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`team_id` INTEGER NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`team_id`))",
-        "fields": [
-          {
-            "fieldPath": "teamId",
-            "columnName": "team_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "team_id"
+            "id"
           ],
           "autoGenerate": false
         },
@@ -144,7 +106,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b473628f322208a8fce1f159694ce869')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a117d496f2a82d3f3b052a90495883ed')"
     ]
   }
 }

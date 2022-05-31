@@ -11,8 +11,8 @@ data class MovieResult(
     val originalLanguage: String,
     val title: String,
     val backdropPath: String?,
-    val popularity: Number,
+    val popularity: Double,
     val voteCount: Int,
     val video: Boolean,
-    val voteAverage: Number
+    val voteAverage: Double
 )

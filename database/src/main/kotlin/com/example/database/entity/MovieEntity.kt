@@ -1,8 +1,13 @@
-package com.example.data.entity
+package com.example.database.entity
 
-import com.example.domain.entity.MovieResult
+import androidx.room.Entity
+import com.example.data.entity.DataMovieResult
 
-data class DataMovieResult(
+@Entity(
+    tableName = "Movies",
+    primaryKeys = ["id"]
+)
+data class MovieEntity(
     val posterPath: String?,
     val adult: Boolean,
     val overview: String,
@@ -19,7 +24,7 @@ data class DataMovieResult(
     val voteAverage: Double
 )
 
-fun DataMovieResult.toMovieResult() = MovieResult(
+fun DataMovieResult.toMovieEntity() = MovieEntity(
     posterPath,
     adult,
     overview,
@@ -36,7 +41,7 @@ fun DataMovieResult.toMovieResult() = MovieResult(
     voteAverage
 )
 
-fun MovieResult.toDataMovieResult() = DataMovieResult(
+fun MovieEntity.toDataMovieResult() = DataMovieResult(
     posterPath,
     adult,
     overview,
