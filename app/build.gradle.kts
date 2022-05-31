@@ -101,6 +101,10 @@ android {
         sourceCompatibility = Versions.sourceCompatibility
         targetCompatibility = Versions.targetCompatibility
     }
+
+    packagingOptions {
+        exclude("META-INF/com.android.tools/proguard/coroutines.pro")
+    }
 }
 
 dependencies {
@@ -116,21 +120,18 @@ dependencies {
     implementation(Libs.coreKtx)
     implementation(Libs.material)
     implementation(Libs.constraintLayout)
-    implementation(Libs.lifecycle)
+    implementation(Libs.lifecycleRuntime)
     implementation(Libs.liveDataKtx)
     implementation(Libs.liveData)
     implementation(Libs.viewModelKtx)
     implementation(Libs.navigationFragmentKtx)
     implementation(Libs.navigationUiKtx)
-    implementation(Libs.drawerLayout)
     implementation(Libs.koin)
     implementation(Libs.koinAndroid)
     implementation(Libs.koinAndroidScope)
     implementation(Libs.koinAndroidViewModel)
     implementation(Libs.arrowCore)
     implementation(Libs.roomKtx)
-    implementation(Libs.threeTenABP)
-    implementation(Libs.timber)
     implementation(Libs.okhttp)
     implementation(Libs.retrofit)
     implementation(Libs.retrofitMoshi)

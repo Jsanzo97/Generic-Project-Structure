@@ -27,14 +27,12 @@ object Versions {
     const val coreKtx = "1.1.0"
     const val material = "1.1.0-alpha10"
     const val constraintLayout = "2.0.0-beta3"
-    const val lifecycle = "2.1.0"
+    const val lifecycle = "2.5.0-alpha04"
     const val liveData = "2.4.0"
     const val room = "2.4.0-rc01"
     const val navigation = "2.1.0"
-    const val drawerLayout = "1.1.0-alpha03"
 
     const val arrow = "0.10.0"
-    const val threeTenABP = "1.2.1"
     const val timber = "4.7.1"
     const val koin = "2.0.1"
 
@@ -61,15 +59,13 @@ object Libs {
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val material = "com.google.android.material:material:${Versions.material}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
     const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
     const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.liveData}"
     const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
-    const val drawerLayout = "androidx.drawerlayout:drawerlayout:${Versions.drawerLayout}"
-    const val threeTenABP = "com.jakewharton.threetenabp:threetenabp:${Versions.threeTenABP}"
     const val arrowCore = "io.arrow-kt:arrow-core-data:${Versions.arrow}"
     const val koin = "org.koin:koin-core:${Versions.koin}"
     const val koinAndroid = "org.koin:koin-android:${Versions.koin}"
@@ -91,6 +87,5 @@ object Kapt {
 object DebugLibs {
     const val debugDb = "com.amitshekhar.android:debug-db:${Versions.debugDb}"
     const val chucker = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
-    const val chuckerNoOp = "com.github.chuckerteam.chucker:library-no-op:${Versions.chucker}"
 
 }
