@@ -27,25 +27,19 @@ class MoviesDataRepository(
     override suspend fun getMovies(page: Int): Either<MovieError, Flow<Movie>> = withContext(dispatcher) {
         remoteMoviesDatastore.getMovies(page).fold(
             ifLeft = {
-                /*
                 localMoviesDatastore.getMovies().fold(
                     ifLeft = { error ->
                         error.toMovieError().left()
                     },
                     ifRight = { dataMovieResult ->
-                        dataMovieResult.map { dataMovieList ->
-                            dataMovieList.map { dataMovie ->
-                                dataMovie.toMovieResult()
-                            }
+                        dataMovieResult.map { dataMovie ->
+                            dataMovie.toMovie()
                         }.right()
                     }
                 )
-
-                 */
-                it.toMovieError().left()
             },
-            ifRight = {
-                flowOf(it.toMovie()).right()
+            ifRight = { dataMovie ->
+                flowOf(dataMovie.toMovie()).right()
             }
         )
     }

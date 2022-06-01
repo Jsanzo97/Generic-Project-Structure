@@ -39,7 +39,11 @@ class HomeViewModel(
                 },
                 ifRight = { flow ->
                     flow.collect { movies ->
-                        moviesRetrieved.addAll(movies.results)
+                        movies.results.forEach { movieResult ->
+                            if (!moviesRetrieved.contains(movieResult)) {
+                                moviesRetrieved.addAll(movies.results)
+                            }
+                        }
                         _homeViewModelStateFlow.value = MoviesRetrieved(moviesRetrieved)
                     }
                 }

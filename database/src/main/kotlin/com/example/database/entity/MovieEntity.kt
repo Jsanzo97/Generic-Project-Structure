@@ -1,6 +1,7 @@
 package com.example.database.entity
 
 import androidx.room.Entity
+import com.example.data.entity.DataMovie
 import com.example.data.entity.DataMovieResult
 
 @Entity(

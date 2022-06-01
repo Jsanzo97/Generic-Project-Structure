@@ -2,6 +2,7 @@ package com.example.database.storage
 
 import arrow.core.*
 import com.example.data.datastore.LocalMoviesDatastore
+import com.example.data.entity.DataMovie
 import com.example.data.entity.DataMovieResult
 import com.example.data.error.LocalDataError
 import com.example.data.error.ReadingError
@@ -10,6 +11,7 @@ import com.example.database.dao.MoviesDao
 import com.example.database.entity.toDataMovieResult
 import com.example.database.entity.toMovieEntity
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import java.lang.Exception
 
@@ -17,14 +19,17 @@ class MoviesStorage(
     private val moviesDao: MoviesDao
 ): LocalMoviesDatastore {
 
-    override suspend fun getMovies(): Either<LocalDataError, Flow<List<DataMovieResult>>> {
+    override suspend fun getMovies(): Either<LocalDataError, Flow<DataMovie>> {
         return try {
-            moviesDao.getMovies().map { movieEntityList ->
-                movieEntityList.map { movieEntity ->
-                    movieEntity.toDataMovieResult()
-                }
-            }.right()
-        } catch (_: Exception) {
+            flowOf(
+                DataMovie(
+                    page = 0,
+                    moviesDao.getMovies().map { movieEntity -> movieEntity.toDataMovieResult() },
+                    totalResults = 0,
+                    totalPages = 0
+                )
+            ).right()
+        } catch (e: Exception) {
             ReadingError.left()
         }
     }

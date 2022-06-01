@@ -51,7 +51,7 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
                         updateMovies(state.movies)
                         hideProgressDialog()
                     }
-                    else -> { /* no-op */ }
+                    is ErrorOnOperation -> showError(state.message)
                 }
             }
         }
