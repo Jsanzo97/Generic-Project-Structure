@@ -9,6 +9,7 @@ import com.example.common.view.MediaView
 import com.example.domain.entity.MovieResult
 import com.example.movielist.R
 import com.google.android.material.textview.MaterialTextView
+import java.util.*
 
 class HomeMovieAdapter: ListAdapter<MovieResult, HomeMovieAdapter.ViewHolder>(HomeMoviesDiffUtilCallback()) {
 
@@ -23,13 +24,15 @@ class HomeMovieAdapter: ListAdapter<MovieResult, HomeMovieAdapter.ViewHolder>(Ho
         item.movieTitleLabel.text = element.title
         item.movieImage.loadImage(element.posterPath)
         item.movieReleaseDate.text = element.releaseDate
-        item.moviePopularity.text = element.popularity.toString()
+        item.movieVoteAverage.text = element.voteAverage.toString()
+        item.movieLanguage.text = element.originalLanguage.toUpperCase(Locale.getDefault())
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val movieTitleLabel: MaterialTextView = itemView.findViewById(R.id.movie_title_value_text)
         val movieImage: MediaView = itemView.findViewById(R.id.movie_image)
-        val movieReleaseDate: MaterialTextView = itemView.findViewById(R.id.movie_release_date_text)
-        val moviePopularity: MaterialTextView = itemView.findViewById(R.id.movie_popularity_text)
+        val movieReleaseDate: MaterialTextView = itemView.findViewById(R.id.movie_release_date_value_text)
+        val movieVoteAverage: MaterialTextView = itemView.findViewById(R.id.movie_vote_average_value_text)
+        val movieLanguage: MaterialTextView = itemView.findViewById(R.id.movie_language_value_text)
     }
 }

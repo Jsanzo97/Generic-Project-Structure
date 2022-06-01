@@ -51,6 +51,7 @@ class MediaView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     }
 
     fun loadImage(url: String?) {
+        imageLoading.changeVisibility(true)
         Glide.with(this)
             .load(BASE_IMAGE_URL_ORIGINAL + url)
             .listener(listener)
