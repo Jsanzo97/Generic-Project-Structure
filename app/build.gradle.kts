@@ -122,7 +122,6 @@ dependencies {
     implementation(Libs.constraintLayout)
     implementation(Libs.lifecycleRuntime)
     implementation(Libs.liveDataKtx)
-    implementation(Libs.liveData)
     implementation(Libs.viewModelKtx)
     implementation(Libs.navigationFragmentKtx)
     implementation(Libs.navigationUiKtx)

@@ -11,7 +11,7 @@
 
     <style name="AppTheme.CustomDialog.Button.Card" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textAppearance">@style/AppTheme.CustomDialog.Button.TextAppearance</item>
-        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="android:backgroundTint">@color/purple_500</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/card_button_font_size</item>
     </style>

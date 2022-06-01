@@ -27,7 +27,7 @@ object Versions {
     const val coreKtx = "1.1.0"
     const val material = "1.1.0-alpha10"
     const val constraintLayout = "2.0.0-beta3"
-    const val lifecycle = "2.5.0-alpha04"
+    const val lifecycle = "2.2.0"
     const val liveData = "2.4.0"
     const val room = "2.4.0-rc01"
     const val navigation = "2.1.0"
@@ -42,6 +42,7 @@ object Versions {
     const val chucker = "3.0.1"
 
     const val gson = "2.8.2"
+    const val glide = "4.9.0"
 
     const val debugDb = "1.0.6"
 }
@@ -64,7 +65,6 @@ object Libs {
     const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
     const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.liveData}"
     const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
@@ -79,6 +79,7 @@ object Libs {
     const val retrofitMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
 }
 
 object Kapt {

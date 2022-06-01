@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.common.fragment.CustomFragment
 import com.example.domain.entity.MovieResult
 import com.example.movielist.R
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment: CustomFragment(R.layout.home_fragment) {
@@ -26,23 +26,30 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
     }
 
     private fun setupRecyclerView() {
+        movieListRecycler.adapter = HomeMovieAdapter()
         movieListRecycler.setHasFixedSize(true)
         movieListRecycler.layoutManager = LinearLayoutManager(
             requireContext(),
             LinearLayoutManager.VERTICAL,
             false
         )
+        movieListRecycler.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                viewModel.notifyLastElementVisible(layoutManager.findLastCompletelyVisibleItemPosition())
+            }
+        })
     }
 
     private fun setupViewModelStateFlow() {
         lifecycleScope.launchWhenStarted {
-            viewModel.homeViewModelSateFlow.collectLatest { state ->
+            viewModel.homeViewModelSateFlow.collect { state ->
                 when (state) {
                     is InitialState -> { /* no-op */ }
-                    is RetrievingMoviesFromRemote -> showProgressDialog()
-                    is MovieRetrievedFromRemote -> {
+                    is RetrievingMovies -> showProgressDialog()
+                    is MoviesRetrieved -> {
+                        updateMovies(state.movies)
                         hideProgressDialog()
-                        updateMovies(state.data)
                     }
                     else -> { /* no-op */ }
                 }
@@ -51,14 +58,8 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
     }
 
     private fun updateMovies(movieList: List<MovieResult>) {
-        var adapter = movieListRecycler.adapter
-        if (adapter != null) {
-            adapter = adapter as HomeMovieAdapter
-            adapter.onNewData(movieList)
-            movieListRecycler.adapter = adapter
-        } else {
-            movieListRecycler.adapter = HomeMovieAdapter(movieList.toMutableList())
-        }
+        val adapter = (movieListRecycler.adapter as HomeMovieAdapter)
+        adapter.submitList(movieList)
     }
 
 }

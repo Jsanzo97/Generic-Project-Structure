@@ -4,6 +4,6 @@ import com.example.domain.repository.MoviesRepository
 
 class GetMoviesUseCase(private val movieRepository: MoviesRepository) {
 
-    suspend operator fun invoke() = movieRepository.getMovies()
+    suspend operator fun invoke(page: Int) = movieRepository.getMovies(page)
 
 }

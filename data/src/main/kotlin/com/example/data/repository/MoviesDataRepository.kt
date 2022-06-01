@@ -14,6 +14,7 @@ import com.example.domain.repository.MoviesRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
@@ -23,9 +24,10 @@ class MoviesDataRepository(
     private val dispatcher: CoroutineDispatcher
 ): MoviesRepository {
 
-    override suspend fun getMovies(): Either<MovieError, Flow<List<MovieResult>>> = withContext(dispatcher) {
-        remoteMoviesDatastore.getMovies().fold(
+    override suspend fun getMovies(page: Int): Either<MovieError, Flow<Movie>> = withContext(dispatcher) {
+        remoteMoviesDatastore.getMovies(page).fold(
             ifLeft = {
+                /*
                 localMoviesDatastore.getMovies().fold(
                     ifLeft = { error ->
                         error.toMovieError().left()
@@ -38,9 +40,12 @@ class MoviesDataRepository(
                         }.right()
                     }
                 )
+
+                 */
+                it.toMovieError().left()
             },
-            ifRight = { movie ->
-                listOf(movie.results.map { it.toMovieResult() }).asFlow().right()
+            ifRight = {
+                flowOf(it.toMovie()).right()
             }
         )
     }

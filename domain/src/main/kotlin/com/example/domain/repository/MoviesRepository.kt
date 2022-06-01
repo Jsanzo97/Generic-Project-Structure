@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MoviesRepository {
 
-    suspend fun getMovies(): Either<MovieError, Flow<List<MovieResult>>>
+    suspend fun getMovies(page: Int): Either<MovieError, Flow<Movie>>
     suspend fun saveMovies(movies: List<MovieResult>): Option<MovieError>
 
 }

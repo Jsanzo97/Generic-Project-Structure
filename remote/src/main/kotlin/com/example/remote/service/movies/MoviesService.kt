@@ -15,9 +15,9 @@ class MoviesService(
     private val apiKey: String
 ): RemoteMoviesDatastore {
 
-    override suspend fun getMovies(): Either<RemoteDataError, DataMovie> =
+    override suspend fun getMovies(page: Int): Either<RemoteDataError, DataMovie> =
         executeNetworkRequest {
-            moviesRemoteWebService.getMovies(apiKey)
+            moviesRemoteWebService.getMovies(apiKey, page)
         }.fold(
             ifLeft = { error ->
                 error.left()

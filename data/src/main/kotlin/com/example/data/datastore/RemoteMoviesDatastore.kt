@@ -6,6 +6,6 @@ import com.example.data.error.RemoteDataError
 
 interface RemoteMoviesDatastore {
 
-    suspend fun getMovies(): Either<RemoteDataError, DataMovie>
+    suspend fun getMovies(page: Int): Either<RemoteDataError, DataMovie>
 
 }

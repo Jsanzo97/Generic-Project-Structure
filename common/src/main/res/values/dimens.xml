@@ -10,6 +10,7 @@
     <dimen name="card_button_font_size">12dp</dimen>
 
     <dimen name="zero">0dp</dimen>
+    <dimen name="smallest_space">4dp</dimen>
     <dimen name="small_space">8dp</dimen>
     <dimen name="medium_space">16dp</dimen>
 

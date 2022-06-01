@@ -40,4 +40,6 @@ dependencies {
     implementation(Libs.timber)
     implementation(Libs.material)
     implementation(Libs.constraintLayout)
+    implementation(Libs.glide)
+
 }

@@ -8,7 +8,7 @@
         android:id="@+id/title_progress_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/purple_500"
         android:padding="@dimen/progress_bar_padding"
         android:text="@string/loading"
         android:textAlignment="center"
@@ -22,6 +22,6 @@
         android:layout_width="@dimen/progress_bar_width"
         android:layout_height="@dimen/progress_bar_height"
         android:indeterminateTintMode="src_in"
-        android:indeterminateTint="@color/colorPrimary" />
+        android:indeterminateTint="@color/purple_500" />
 
 </RelativeLayout>
