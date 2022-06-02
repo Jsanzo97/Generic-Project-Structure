@@ -3,6 +3,7 @@ package com.example.database.storage
 import arrow.core.*
 import com.example.data.datastore.LocalMoviesDatastore
 import com.example.data.entity.DataMovie
+import com.example.data.entity.DataMovieDetails
 import com.example.data.entity.DataMovieResult
 import com.example.data.error.LocalDataError
 import com.example.data.error.ReadingError
@@ -19,21 +20,21 @@ class MoviesStorage(
     private val moviesDao: MoviesDao
 ): LocalMoviesDatastore {
 
-    override suspend fun getMovies(): Either<LocalDataError, Flow<DataMovie>> {
+    override suspend fun getMovies(): Either<LocalDataError, DataMovie> {
         return try {
-            moviesDao.getMovies().map { movieEntityList ->
-                DataMovie(
-                    0,
-                    movieEntityList.map { movieEntity ->
-                        movieEntity.toDataMovieResult()
-                    },
-                    0,
-                    0,
-                )
-            }.right()
+            DataMovie(
+                0,
+                moviesDao.getMovies().map { it.toDataMovieResult() },
+                0,
+                0,
+            ).right()
         } catch (e: Exception) {
             ReadingError.left()
         }
+    }
+
+    override suspend fun getMovieDetails(): Either<LocalDataError, DataMovieDetails> {
+        TODO("Not yet implemented")
     }
 
     override suspend fun saveMovie(dataMovie: DataMovieResult): Option<LocalDataError> {
@@ -43,6 +44,10 @@ class MoviesStorage(
         } catch (_: Exception) {
             WritingError.some()
         }
+    }
+
+    override suspend fun saveMovieDetails(dataMovieDetails: DataMovieDetails): Option<LocalDataError> {
+        TODO("Not yet implemented")
     }
 
 }

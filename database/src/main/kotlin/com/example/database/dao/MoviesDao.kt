@@ -16,7 +16,7 @@ abstract class MoviesDao {
 
 
     @Query("select * from Movies")
-    abstract fun getMovies(): Flow<List<MovieEntity>>
+    abstract fun getMovies(): List<MovieEntity>
 
 
 }

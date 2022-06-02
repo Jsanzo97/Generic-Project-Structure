@@ -34,14 +34,16 @@ class MoviesDataRepository(
                         error.toMovieError().left()
                     },
                     ifRight = { dataMovieResult ->
-                        dataMovieResult.map { dataMovie ->
-                            dataMovie.toMovie()
-                        }.right()
+                        flowOf(
+                            dataMovieResult.toMovie()
+                        ).right()
                     }
                 )
             },
             ifRight = { dataMovie ->
-                flowOf(dataMovie.toMovie()).right()
+                flowOf(
+                    dataMovie.toMovie()
+                ).right()
             }
         )
     }
