@@ -2,6 +2,7 @@ package com.example.movielist.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import com.example.movielist.R
 
 class MainActivity: AppCompatActivity() {
@@ -11,5 +12,4 @@ class MainActivity: AppCompatActivity() {
 
         setContentView(R.layout.main_activity)
     }
-
 }
