@@ -50,11 +50,26 @@ class MoviesDataRepository(
 
     override suspend fun getMovieDetails(movieId: Int): Either<MovieError, MovieDetails> = withContext(dispatcher) {
         remoteMoviesDatastore.getMovieDetails(movieId).fold(
-            ifLeft = { error ->
-                error.toMovieError().left()
-            },
-            ifRight = {
-                it.toMovieDetails().right()
+            ifLeft = {
+                localMoviesDatastore.getMovieDetails(movieId).fold(
+                    ifLeft = { error ->
+                        error.toMovieError().left()
+                    },
+                    ifRight = { dataMovieDetails ->
+                        dataMovieDetails.toMovieDetails().right()
+                    }
+                )
+             },
+            ifRight = { dataMovieDetails ->
+                localMoviesDatastore.saveMovieDetails(dataMovieDetails).fold(
+                    ifEmpty = {
+                        dataMovieDetails.toMovieDetails().right()
+                    },
+                    ifSome = { error ->
+                        error.toMovieError().left()
+                    }
+                )
+
             }
         )
     }
@@ -69,4 +84,5 @@ class MoviesDataRepository(
             }
         )
     }
+
 }

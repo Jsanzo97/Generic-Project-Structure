@@ -9,7 +9,9 @@ import com.example.data.error.LocalDataError
 import com.example.data.error.ReadingError
 import com.example.data.error.WritingError
 import com.example.database.dao.MoviesDao
+import com.example.database.entity.toDataMovieDetails
 import com.example.database.entity.toDataMovieResult
+import com.example.database.entity.toMovieDetailsEntity
 import com.example.database.entity.toMovieEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -28,26 +30,35 @@ class MoviesStorage(
                 0,
                 0,
             ).right()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             ReadingError.left()
         }
     }
 
-    override suspend fun getMovieDetails(): Either<LocalDataError, DataMovieDetails> {
-        TODO("Not yet implemented")
+    override suspend fun getMovieDetails(movieId: Int): Either<LocalDataError, DataMovieDetails> {
+        return try {
+            moviesDao.getMovieDetails(movieId).toDataMovieDetails().right()
+        } catch (_: Exception) {
+            ReadingError.left()
+        }
     }
 
     override suspend fun saveMovie(dataMovie: DataMovieResult): Option<LocalDataError> {
         return try {
             moviesDao.saveMovie(dataMovie.toMovieEntity())
             None
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             WritingError.some()
         }
     }
 
     override suspend fun saveMovieDetails(dataMovieDetails: DataMovieDetails): Option<LocalDataError> {
-        TODO("Not yet implemented")
+        return try {
+            moviesDao.saveMovieDetails(dataMovieDetails.toMovieDetailsEntity())
+            None
+        } catch (_: Exception) {
+            WritingError.some()
+        }
     }
 
 }

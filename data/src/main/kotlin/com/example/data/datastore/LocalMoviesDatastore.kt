@@ -13,5 +13,5 @@ interface LocalMoviesDatastore {
     suspend fun saveMovie(dataMovie: DataMovieResult): Option<LocalDataError>
     suspend fun saveMovieDetails(dataMovieDetails: DataMovieDetails): Option<LocalDataError>
     suspend fun getMovies(): Either<LocalDataError, DataMovie>
-    suspend fun getMovieDetails(): Either<LocalDataError, DataMovieDetails>
+    suspend fun getMovieDetails(movieId: Int): Either<LocalDataError, DataMovieDetails>
 }
