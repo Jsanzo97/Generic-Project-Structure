@@ -5,9 +5,11 @@ import com.example.data.datastore.LocalMoviesDatastore
 import com.example.data.datastore.RemoteMoviesDatastore
 import com.example.data.entity.toDataMovieResult
 import com.example.data.entity.toMovie
+import com.example.data.entity.toMovieDetails
 import com.example.data.entity.toMovieResult
 import com.example.data.error.toMovieError
 import com.example.domain.entity.Movie
+import com.example.domain.entity.MovieDetails
 import com.example.domain.entity.MovieResult
 import com.example.domain.error.MovieError
 import com.example.domain.repository.MoviesRepository
@@ -40,6 +42,17 @@ class MoviesDataRepository(
             },
             ifRight = { dataMovie ->
                 flowOf(dataMovie.toMovie()).right()
+            }
+        )
+    }
+
+    override suspend fun getMovieDetails(movieId: Int): Either<MovieError, MovieDetails> = withContext(dispatcher) {
+        remoteMoviesDatastore.getMovieDetails(movieId).fold(
+            ifLeft = { error ->
+                error.toMovieError().left()
+            },
+            ifRight = {
+                it.toMovieDetails().right()
             }
         )
     }

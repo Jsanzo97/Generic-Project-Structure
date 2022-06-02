@@ -20,6 +20,11 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.movielist.ui.details.DetailsFragment"
         android:label="Details" >
+
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+
     </fragment>
 
 </navigation>

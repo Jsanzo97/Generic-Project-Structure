@@ -34,7 +34,7 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
         override fun onItemClick(element: MovieResult) {
             navigationViewModel.navigateToDetails(
                 findNavController(),
-                element
+                element.id
             )
         }
     }

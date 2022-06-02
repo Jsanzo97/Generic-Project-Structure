@@ -2,6 +2,7 @@ package com.example.movielist
 
 import android.app.Application
 import com.example.movielist.di.data.dataModule
+import com.example.movielist.di.details.detailsModule
 import com.example.movielist.di.home.homeModule
 import com.example.movielist.di.local.localModule
 import com.example.movielist.di.remote.remoteModule
@@ -21,7 +22,8 @@ class MoviesApplication: Application() {
                     remoteModule,
                     localModule,
                     dataModule,
-                    homeModule
+                    homeModule,
+                    detailsModule
                 )
             )
         }

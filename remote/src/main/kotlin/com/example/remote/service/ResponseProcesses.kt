@@ -13,8 +13,8 @@ import java.net.HttpURLConnection
 
 internal suspend fun <T : Any> executeNetworkRequest(f: suspend () -> Response<T>): Either<RemoteDataError, T> {
     return Either.catch(f).fold(
-        ifLeft = {
-            ConnectionError.left()
+        ifLeft = { error ->
+            UnrecognizedRemoteError(error.localizedMessage ?: error.toString()).left()
         },
         ifRight = {
             processResponse(it)
