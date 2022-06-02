@@ -10,9 +10,7 @@ import com.example.common.extensions.lazyBindView
 import com.example.common.extensions.toFormattedString
 import com.example.common.fragment.CustomFragment
 import com.example.common.view.MediaView
-import com.example.domain.entity.MovieDetails
-import com.example.domain.entity.MovieGenre
-import com.example.domain.entity.MovieSpokenLanguage
+import com.example.domain.entity.*
 import com.example.movielist.R
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.flow.collect
@@ -29,10 +27,14 @@ class DetailsFragment: CustomFragment(R.layout.details_fragment) {
     private val movieDetailsPunctuation: MaterialTextView by lazyBindView(R.id.movie_details_punctuation_value_text)
     private val movieDetailsReleaseDate: MaterialTextView by lazyBindView(R.id.movie_details_release_date_value_text)
     private val movieDetailsLanguage: MaterialTextView by lazyBindView(R.id.movie_details_language_value_text)
+    private val movieDetailsDuration: MaterialTextView by lazyBindView(R.id.movie_details_runtime_value_text)
     private val movieDetailsGenres: MaterialTextView by lazyBindView(R.id.movie_details_genres_value_text)
     private val movieDetailsWebpage: MaterialTextView by lazyBindView(R.id.movie_details_webpage_value_text)
     private val movieDetailsOverview: MaterialTextView by lazyBindView(R.id.movie_details_overview_value_text)
-
+    private val movieDetailsProduction: MaterialTextView by lazyBindView(R.id.movie_details_production_value_text)
+    private val movieDetailsCountry: MaterialTextView by lazyBindView(R.id.movie_details_country_value_text)
+    private val movieDetailsStatus: MaterialTextView by lazyBindView(R.id.movie_details_status_value_text)
+    private val movieDetailsRevenue: MaterialTextView by lazyBindView(R.id.movie_details_revenue_value_text)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,22 +67,36 @@ class DetailsFragment: CustomFragment(R.layout.details_fragment) {
         movieDetailsPunctuation.text = movieDetails.voteAverage.toString()
         movieDetailsReleaseDate.text = movieDetails.releaseDate
         movieDetailsLanguage.text = formatLanguages(movieDetails.spokenLanguages)
+        movieDetailsDuration.text = getString(R.string.movie_details_duration_value, movieDetails.runtime)
         movieDetailsGenres.text = formatGenres(movieDetails.genres)
         movieDetailsWebpage.text = movieDetails.homepage
         movieDetailsOverview.text = movieDetails.overview
+        movieDetailsProduction.text = formatProductions(movieDetails.productionCompanies)
+        movieDetailsCountry.text = formatCountries(movieDetails.productionCountries)
+        movieDetailsStatus.text = movieDetails.status
+        movieDetailsRevenue.text = getString(R.string.movie_details_revenue_value, movieDetails.revenue)
     }
 
-    private fun formatLanguages(languages: List<MovieSpokenLanguage>): String {
-        return languages.map { language ->
+    private fun formatLanguages(languages: List<MovieSpokenLanguage>) =
+        languages.map { language ->
             language.name
         }.toFormattedString()
 
-    }
 
-    private fun formatGenres(genres: List<MovieGenre>): String {
-        return genres.map { genre ->
+    private fun formatGenres(genres: List<MovieGenre>) =
+        genres.map { genre ->
             genre.name
         }.toFormattedString()
-    }
+
+
+    private fun formatProductions(productions: List<MovieProductionCompany>) =
+        productions.map { productionCompany ->
+            productionCompany.name
+        }.toFormattedString()
+
+    private fun formatCountries(countries: List<MovieProductionCountry>) =
+        countries.map { productionCountry ->
+            productionCountry.name
+        }.toFormattedString()
 
 }

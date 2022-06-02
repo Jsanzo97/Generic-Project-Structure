@@ -8,5 +8,13 @@
     <string name="movie_details_genres">Genres:</string>
     <string name="movie_details_webpage">Webpage:</string>
     <string name="movie_details_overview">Overview:</string>
+    <string name="movie_details_runtime">Runtime:</string>
+    <string name="movie_details_production">Production Companies:</string>
+    <string name="movie_details_country">Countries:</string>
+    <string name="movie_details_status">Status:</string>
+    <string name="movie_details_revenue">Revenue:</string>
+
+    <string name="movie_details_duration_value">%1$d minutes</string>
+    <string name="movie_details_revenue_value" translatable="false">%1$d $</string>
 
 </resources>

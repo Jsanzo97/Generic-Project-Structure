@@ -14,13 +14,13 @@ data class MovieDetails(
     val overview: String?, // ok
     val popularity: Double,
     val posterPath: String?,
-    val productionCompanies: List<MovieProductionCompany>,
-    val productionCountries: List<MovieProductionCountry>,
+    val productionCompanies: List<MovieProductionCompany>, // ok
+    val productionCountries: List<MovieProductionCountry>, // ok
     val releaseDate: String, // ok
     val revenue: Int,
     val runtime: Int?,
     val spokenLanguages: List<MovieSpokenLanguage>,
-    val status: String,
+    val status: String, // ok
     val tagline: String?,
     val title: String, // ok
     val video: Boolean,
