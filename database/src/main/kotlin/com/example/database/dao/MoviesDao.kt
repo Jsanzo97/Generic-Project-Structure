@@ -13,6 +13,10 @@ abstract class MoviesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun saveMovie(movieEntity: MovieEntity)
 
+
+
     @Query("select * from Movies")
     abstract fun getMovies(): Flow<List<MovieEntity>>
+
+
 }

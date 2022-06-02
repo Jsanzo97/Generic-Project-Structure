@@ -57,12 +57,8 @@ class MoviesDataRepository(
         )
     }
 
-    override suspend fun saveMovies(movies: List<MovieResult>) = withContext(dispatcher) {
-        localMoviesDatastore.saveMovie(
-            movies.map { movieResult ->
-                movieResult.toDataMovieResult()
-            }
-        ).fold(
+    override suspend fun saveMovie(movie: MovieResult) = withContext(dispatcher) {
+        localMoviesDatastore.saveMovie(movie.toDataMovieResult()).fold(
             ifSome = { error ->
                 error.toMovieError().some()
             },

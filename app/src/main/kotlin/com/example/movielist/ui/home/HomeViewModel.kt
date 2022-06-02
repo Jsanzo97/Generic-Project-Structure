@@ -4,11 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.MovieResult
 import com.example.domain.usecase.GetMoviesUseCase
+import com.example.domain.usecase.SaveMovieUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val getMoviesUseCase: GetMoviesUseCase
+    private val getMoviesUseCase: GetMoviesUseCase,
+    private val saveMovieUseCase: SaveMovieUseCase
 ): ViewModel() {
 
     private val _homeViewModelStateFlow = MutableStateFlow<HomeViewState>(InitialState)
@@ -44,6 +46,23 @@ class HomeViewModel(
                 }
             )
         }
+    }
+
+    fun saveMovie(movie: MovieResult) {
+        viewModelScope.launch {
+            saveMovieUseCase(movie).fold(
+                ifEmpty = {
+                    _homeViewModelStateFlow.value = SavedMovie(movie.id)
+                },
+                ifSome = { error ->
+                    _homeViewModelStateFlow.value = ErrorOnOperation(error.toString())
+                }
+            )
+        }
+    }
+
+    fun changeStateTo(state: HomeViewState) {
+        _homeViewModelStateFlow.value = state
     }
 
     private fun checkNeedNewPage() {

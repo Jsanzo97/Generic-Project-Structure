@@ -9,6 +9,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalMoviesDatastore {
 
-    suspend fun saveMovie(dataMovie: List<DataMovieResult>): Option<LocalDataError>
+    suspend fun saveMovie(dataMovie: DataMovieResult): Option<LocalDataError>
     suspend fun getMovies() : Either<LocalDataError, Flow<DataMovie>>
 }

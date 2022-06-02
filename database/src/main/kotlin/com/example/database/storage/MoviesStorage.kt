@@ -36,11 +36,9 @@ class MoviesStorage(
         }
     }
 
-    override suspend fun saveMovie(dataMovie: List<DataMovieResult>): Option<LocalDataError> {
+    override suspend fun saveMovie(dataMovie: DataMovieResult): Option<LocalDataError> {
         return try {
-            dataMovie.forEach { movie ->
-                moviesDao.saveMovie(movie.toMovieEntity())
-            }
+            moviesDao.saveMovie(dataMovie.toMovieEntity())
             None
         } catch (_: Exception) {
             WritingError.some()

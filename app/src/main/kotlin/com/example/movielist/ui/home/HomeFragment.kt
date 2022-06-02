@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,8 +12,11 @@ import com.example.common.extensions.lazyBindView
 import com.example.common.fragment.CustomFragment
 import com.example.domain.entity.MovieResult
 import com.example.movielist.R
+import com.example.movielist.ui.main.MainActivity
 import com.example.movielist.ui.main.NavigationManagerViewModel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment: CustomFragment(R.layout.home_fragment) {
@@ -32,10 +36,7 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
 
     private val homeAdapterListener = object: HomeMoviesAdapterListener {
         override fun onItemClick(element: MovieResult) {
-            navigationViewModel.navigateToDetails(
-                findNavController(),
-                element.id
-            )
+            viewModel.saveMovie(element)
         }
     }
 
@@ -79,15 +80,27 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
             viewModel.homeViewModelSateFlow.collect { state ->
                 when (state) {
                     is InitialState -> { /* no-op */ }
-                    is RetrievingMovies -> showProgressDialog()
+                    is RetrievingMovies, SavingMovie -> showProgressDialog()
                     is MoviesRetrieved -> {
                         updateMovies(state.movies)
                         hideProgressDialog()
+                    }
+                    is SavedMovie -> {
+                        hideProgressDialog()
+                        navigationViewModel.navigateToDetails(
+                            findNavController(),
+                            state.movieId
+                        )
                     }
                     is ErrorOnOperation -> showError(state.message)
                 }
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.changeStateTo(InitialState)
     }
 
     private fun updateMovies(movieList: List<MovieResult>) {
