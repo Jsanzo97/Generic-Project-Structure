@@ -16,23 +16,18 @@ class HomeViewModel(
 
     private val threshold = 10
     private val pageSize = 20
-    private var lastPageRetrieved = 0
+    private var nextPageToRetrieve = 1
     private var lastElementRetrieved = 0
 
     private val moviesRetrieved = mutableListOf<MovieResult>()
-    private val lastVisible = MutableStateFlow(0)
+    private var lastVisible = 0
 
-    init {
+    fun getMovies(page: Int = nextPageToRetrieve) {
         viewModelScope.launch {
-            lastVisible.collect { checkNeedNewPage() }
-        }
-    }
-
-    fun getMovies(page: Int = lastPageRetrieved) {
-        viewModelScope.launch {
-            if (page <= 1) {
+            if (page == 1) {
                 _homeViewModelStateFlow.value = RetrievingMovies
             }
+
             getMoviesUseCase(page).fold(
                 ifLeft = { error ->
                     _homeViewModelStateFlow.value = ErrorOnOperation(error.toString())
@@ -52,14 +47,17 @@ class HomeViewModel(
     }
 
     private fun checkNeedNewPage() {
-        if (lastVisible.value + threshold >= lastElementRetrieved) {
+        if (lastVisible + threshold >= lastElementRetrieved) {
             lastElementRetrieved += pageSize
-            lastPageRetrieved ++
+            nextPageToRetrieve ++
             getMovies()
         }
     }
 
     fun notifyLastElementVisible(lastElement: Int) {
-        lastVisible.value = lastElement
+        if (lastVisible != lastElement) {
+            lastVisible = lastElement
+            checkNeedNewPage()
+        }
     }
 }

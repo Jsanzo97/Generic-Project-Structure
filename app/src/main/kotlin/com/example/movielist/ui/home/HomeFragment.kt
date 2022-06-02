@@ -61,6 +61,7 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
         setupRecyclerView()
         setupSearchView()
         setupViewModelStateFlow()
+
         viewModel.getMovies()
     }
 
