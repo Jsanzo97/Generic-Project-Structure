@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="movie_details_title">Title:</string>
+    <string name="movie_details_punctuation">Punctuation:</string>
+    <string name="movie_details_release_date">Date:</string>
+    <string name="movie_details_language">Languages:</string>
+    <string name="movie_details_genres">Genres:</string>
+    <string name="movie_details_webpage">Webpage:</string>
+    <string name="movie_details_overview">Overview:</string>
+
+</resources>

@@ -39,16 +39,24 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromMovieCollectionEntity(value: String): MovieCollectionEntity {
-        return Gson().fromJson(
-            value,
-            object: TypeToken<MovieCollectionEntity>() {}.type
-        )
+    fun fromMovieCollectionEntity(value: String?): MovieCollectionEntity? {
+        return if (value != null) {
+            Gson().fromJson(
+                value,
+                object: TypeToken<MovieCollectionEntity>() {}.type
+            )
+        } else {
+            null
+        }
     }
 
     @TypeConverter
-    fun toMovieCollectionEntity(value: MovieCollectionEntity): String {
-        return Gson().toJson(value)
+    fun toMovieCollectionEntity(value: MovieCollectionEntity?): String? {
+        return if (value != null) {
+            Gson().toJson(value)
+        } else {
+            null
+        }
     }
 
     @TypeConverter

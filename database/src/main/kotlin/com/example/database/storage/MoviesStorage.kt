@@ -38,7 +38,7 @@ class MoviesStorage(
     override suspend fun getMovieDetails(movieId: Int): Either<LocalDataError, DataMovieDetails> {
         return try {
             moviesDao.getMovieDetails(movieId).toDataMovieDetails().right()
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             ReadingError.left()
         }
     }
@@ -56,8 +56,8 @@ class MoviesStorage(
         return try {
             moviesDao.saveMovieDetails(dataMovieDetails.toMovieDetailsEntity())
             None
-        } catch (_: Exception) {
-            WritingError.some()
+        } catch (e: Exception) {
+            ReadingError.some()
         }
     }
 

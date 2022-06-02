@@ -32,7 +32,7 @@ class HomeViewModel(
 
             getMoviesUseCase(page).fold(
                 ifLeft = { error ->
-                    _homeViewModelStateFlow.value = ErrorOnOperation(error.toString())
+                    _homeViewModelStateFlow.value = ErrorInOperation(error.toString())
                 },
                 ifRight = { flow ->
                     flow.collect { movies ->
@@ -55,7 +55,7 @@ class HomeViewModel(
                     _homeViewModelStateFlow.value = SavedMovie(movie.id)
                 },
                 ifSome = { error ->
-                    _homeViewModelStateFlow.value = ErrorOnOperation(error.toString())
+                    _homeViewModelStateFlow.value = ErrorInOperation(error.toString())
                 }
             )
         }

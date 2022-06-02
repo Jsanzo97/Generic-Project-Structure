@@ -92,7 +92,7 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
                             state.movieId
                         )
                     }
-                    is ErrorOnOperation -> showError(state.message)
+                    is ErrorInOperation -> showError(state.message)
                 }
             }
         }
