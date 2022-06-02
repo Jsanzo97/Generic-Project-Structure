@@ -11,8 +11,4 @@ class NavigationManagerViewModel: ViewModel() {
         navController.navigate(R.id.action_homeFragment_to_detailsFragment)
     }
 
-    fun navigateToHome(navController: NavController) {
-        navController.navigate(R.id.action_detailsFragment_to_homeFragment)
-    }
-
 }

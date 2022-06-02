@@ -1,6 +1,5 @@
 package com.example.movielist.ui.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +21,13 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
 
     private val movieListRecycler: RecyclerView by lazyBindView(R.id.home_movies_recycler)
 
+    private val onScrollListener = object: RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            viewModel.notifyLastElementVisible(layoutManager.findLastCompletelyVisibleItemPosition())
+        }
+    }
+
     private val homeAdapterListener = object: HomeMoviesAdapterListener {
         override fun onItemClick(element: MovieResult) {
             navigationViewModel.navigateToDetails(
@@ -41,12 +47,7 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
 
     private fun setupRecyclerView() {
         movieListRecycler.adapter = HomeMovieAdapter(homeAdapterListener)
-        movieListRecycler.addOnScrollListener(object: RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                viewModel.notifyLastElementVisible(layoutManager.findLastCompletelyVisibleItemPosition())
-            }
-        })
+        movieListRecycler.addOnScrollListener(onScrollListener)
     }
 
     private fun setupViewModelStateFlow() {

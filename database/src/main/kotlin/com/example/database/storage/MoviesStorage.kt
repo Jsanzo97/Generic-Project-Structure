@@ -21,14 +21,16 @@ class MoviesStorage(
 
     override suspend fun getMovies(): Either<LocalDataError, Flow<DataMovie>> {
         return try {
-            flowOf(
+            moviesDao.getMovies().map { movieEntityList ->
                 DataMovie(
-                    page = 0,
-                    moviesDao.getMovies().map { movieEntity -> movieEntity.toDataMovieResult() },
-                    totalResults = 0,
-                    totalPages = 0
+                    0,
+                    movieEntityList.map { movieEntity ->
+                        movieEntity.toDataMovieResult()
+                    },
+                    0,
+                    0,
                 )
-            ).right()
+            }.right()
         } catch (e: Exception) {
             ReadingError.left()
         }
