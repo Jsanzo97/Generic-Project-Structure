@@ -3,10 +3,10 @@ package com.example.common.view
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -30,7 +30,8 @@ class MediaView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
             isFirstResource: Boolean
         ): Boolean {
             imageLoading.changeVisibility(false)
-            imageView.setImageDrawable(context.resources.getDrawable(R.drawable.ic_error_load, null))
+            imageView.setImageDrawable(
+                ResourcesCompat.getDrawable(context.resources, R.drawable.ic_error_load, null))
             return true
         }
 

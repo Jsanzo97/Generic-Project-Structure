@@ -5,7 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.MovieResult
 import com.example.domain.usecase.GetMoviesUseCase
 import com.example.domain.usecase.SaveMovieUseCase
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel(

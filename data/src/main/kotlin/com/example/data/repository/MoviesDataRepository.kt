@@ -6,7 +6,6 @@ import com.example.data.datastore.RemoteMoviesDatastore
 import com.example.data.entity.toDataMovieResult
 import com.example.data.entity.toMovie
 import com.example.data.entity.toMovieDetails
-import com.example.data.entity.toMovieResult
 import com.example.data.error.toMovieError
 import com.example.domain.entity.Movie
 import com.example.domain.entity.MovieDetails
@@ -15,9 +14,7 @@ import com.example.domain.error.MovieError
 import com.example.domain.repository.MoviesRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class MoviesDataRepository(

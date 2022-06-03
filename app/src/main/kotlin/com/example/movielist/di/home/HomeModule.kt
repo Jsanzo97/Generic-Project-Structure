@@ -4,8 +4,6 @@ import com.example.domain.usecase.GetMoviesUseCase
 import com.example.domain.usecase.SaveMovieUseCase
 import com.example.movielist.ui.home.HomeViewModel
 import com.example.movielist.ui.main.NavigationManagerViewModel
-import org.koin.android.ext.koin.androidApplication
-import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

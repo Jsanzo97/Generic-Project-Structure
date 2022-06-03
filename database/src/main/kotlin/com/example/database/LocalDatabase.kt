@@ -4,7 +4,6 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
-import com.example.data.entity.DataMovieCollection
 import com.example.database.dao.MoviesDao
 import com.example.database.entity.*
 import com.google.gson.Gson

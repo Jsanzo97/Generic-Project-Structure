@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.NavGraph
-import com.example.domain.entity.MovieResult
-import com.example.movielist.R
 import com.example.movielist.ui.home.HomeFragmentDirections
 
 class NavigationManagerViewModel: ViewModel() {

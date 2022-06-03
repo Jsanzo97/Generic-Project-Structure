@@ -1,6 +1,9 @@
 package com.example.data.error
 
-import com.example.domain.error.*
+import com.example.domain.error.AuthenticationError
+import com.example.domain.error.GenericError
+import com.example.domain.error.InvalidParametersError
+import com.example.domain.error.NotFoundError
 
 sealed class RemoteDataError
 

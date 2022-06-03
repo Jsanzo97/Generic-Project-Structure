@@ -28,7 +28,6 @@ object Versions {
     const val material = "1.1.0-alpha10"
     const val constraintLayout = "2.0.0-beta3"
     const val lifecycle = "2.2.0"
-    const val liveData = "2.4.0"
     const val room = "2.4.0-rc01"
     const val navigation = "2.4.0"
 

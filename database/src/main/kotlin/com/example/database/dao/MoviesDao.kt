@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.database.entity.MovieDetailsEntity
 import com.example.database.entity.MovieEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class MoviesDao {

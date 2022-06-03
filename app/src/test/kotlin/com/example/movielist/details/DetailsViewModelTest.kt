@@ -1,19 +1,18 @@
-package com.example.movielist
+package com.example.movielist.details
 
 import arrow.core.left
 import arrow.core.right
 import com.example.common.EMPTY_STRING
-import com.example.domain.entity.*
+import com.example.domain.entity.MovieDetails
 import com.example.domain.error.NotFoundError
 import com.example.domain.usecase.GetMovieDetailsUseCase
 import com.example.movielist.ui.details.*
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
 import kotlinx.coroutines.test.runTest
 import org.junit.After
+import org.junit.Assert.*
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.core.context.stopKoin
@@ -21,8 +20,6 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Spy
-import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoRule
 import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.robolectric.RobolectricTestRunner

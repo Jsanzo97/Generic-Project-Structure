@@ -12,7 +12,6 @@ import com.example.domain.entity.MovieResult
 import com.example.movielist.R
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
-import java.util.*
 
 class HomeMovieAdapter(
     private val listener: HomeMoviesAdapterListener
@@ -43,7 +42,7 @@ class HomeMovieAdapter(
         item.movieImage.loadImage(element.posterPath)
         item.movieReleaseDate.text = element.releaseDate
         item.movieVoteAverage.text = element.voteAverage.toString()
-        item.movieLanguage.text = element.originalLanguage.toUpperCase(Locale.getDefault())
+        item.movieLanguage.text = element.originalLanguage.uppercase()
         item.movieLayout.setOnClickListener { listener.onItemClick(element) }
     }
 

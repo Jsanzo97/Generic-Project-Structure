@@ -1,11 +1,9 @@
 package com.example.movielist.ui.details
 
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.example.common.EMPTY_STRING
 import com.example.common.extensions.lazyBindView
 import com.example.common.extensions.toFormattedString
 import com.example.common.fragment.CustomFragment
@@ -15,7 +13,6 @@ import com.example.movielist.R
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 class DetailsFragment: CustomFragment(R.layout.details_fragment) {
 
