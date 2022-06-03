@@ -28,7 +28,7 @@ abstract class CustomFragment(private val contentLayoutId: Int) : Fragment() {
         CustomDialogFragment(
             message = message,
             title = getString(R.string.error)
-        ).show(requireFragmentManager(), DIALOG_FRAGMENT_TAG)
+        ).show(parentFragmentManager, DIALOG_FRAGMENT_TAG)
     }
 
     fun showProgressDialog(title: String = getString(R.string.loading)) {
@@ -42,12 +42,6 @@ abstract class CustomFragment(private val contentLayoutId: Int) : Fragment() {
         }
 
         progressDialog.show()
-    }
-
-    fun updateProgressDialogTitle(title: String) {
-        if (::progressDialog.isInitialized) {
-            progressView.findViewById<MaterialTextView>(R.id.title_progress_dialog).text = title
-        }
     }
 
     fun hideProgressDialog() {
