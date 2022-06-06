@@ -63,8 +63,8 @@ class HomeViewModel(
         }
     }
 
-    fun changeStateTo(state: HomeViewState) {
-        _homeViewModelStateFlow.value = state
+    fun onStop() {
+        _homeViewModelStateFlow.value = InitialState
     }
 
     private fun checkNeedNewPage() {

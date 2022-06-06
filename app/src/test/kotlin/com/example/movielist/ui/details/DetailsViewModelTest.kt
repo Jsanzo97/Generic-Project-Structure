@@ -1,4 +1,4 @@
-package com.example.movielist.details
+package com.example.movielist.ui.details
 
 import arrow.core.left
 import arrow.core.right
@@ -6,7 +6,7 @@ import com.example.common.EMPTY_STRING
 import com.example.domain.entity.MovieDetails
 import com.example.domain.error.NotFoundError
 import com.example.domain.usecase.GetMovieDetailsUseCase
-import com.example.movielist.ui.details.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
@@ -24,6 +24,7 @@ import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.robolectric.RobolectricTestRunner
 
+@ExperimentalCoroutinesApi
 @RunWith(RobolectricTestRunner::class)
 class DetailsViewModelTest {
 

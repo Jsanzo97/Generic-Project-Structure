@@ -96,7 +96,7 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
 
     override fun onStop() {
         super.onStop()
-        viewModel.changeStateTo(InitialState)
+        viewModel.onStop()
     }
 
     private fun updateMovies(movieList: List<MovieResult>) {
