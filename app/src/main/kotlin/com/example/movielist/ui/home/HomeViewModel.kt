@@ -22,9 +22,8 @@ class HomeViewModel(
     private val pageSize = 20
     private var nextPageToRetrieve = 1
     private var lastElementRetrieved = 0
-
-    private val moviesRetrieved = mutableListOf<MovieResult>()
     private var lastVisible = 0
+    private val moviesRetrieved = mutableListOf<MovieResult>()
 
     fun getMovies(page: Int = nextPageToRetrieve) {
         viewModelScope.launch {

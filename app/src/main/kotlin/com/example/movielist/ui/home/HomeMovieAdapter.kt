@@ -32,6 +32,7 @@ class HomeMovieAdapter(
                 movieList.add(movieResult)
             }
         }
+
         filteredList = movieList
         submitList(filteredList)
     }
@@ -79,5 +80,4 @@ class HomeMovieAdapter(
         val movieLanguage: MaterialTextView = itemView.findViewById(R.id.movie_language_value_text)
         val movieLayout: MaterialCardView = itemView.findViewById(R.id.movie_layout)
     }
-
 }

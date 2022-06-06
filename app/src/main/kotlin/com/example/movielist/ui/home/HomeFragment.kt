@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE
 import com.example.common.extensions.lazyBindView
 import com.example.common.fragment.CustomFragment
 import com.example.domain.entity.MovieResult
@@ -25,8 +26,10 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
 
     private val onScrollListener = object: RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-            viewModel.notifyLastElementVisible(layoutManager.findLastCompletelyVisibleItemPosition())
+            if (recyclerView.scrollState == SCROLL_STATE_IDLE) {
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                viewModel.notifyLastElementVisible(layoutManager.findLastCompletelyVisibleItemPosition())
+            }
         }
     }
 

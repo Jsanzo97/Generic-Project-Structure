@@ -33,7 +33,7 @@ abstract class CustomFragment(private val contentLayoutId: Int) : Fragment() {
 
     fun showProgressDialog(title: String = getString(R.string.loading)) {
         if (!::progressDialog.isInitialized) {
-            progressView = layoutInflater.inflate(R.layout.custom_progress_dialog, requireView().parent as ViewGroup)
+            progressView = layoutInflater.inflate(R.layout.custom_progress_dialog, null)
             progressView.findViewById<MaterialTextView>(R.id.title_progress_dialog).text = title
             progressDialog = AlertDialog.Builder(requireContext())
                 .setCancelable(false)
