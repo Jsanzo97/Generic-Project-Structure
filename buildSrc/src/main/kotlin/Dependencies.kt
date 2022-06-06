@@ -44,6 +44,14 @@ object Versions {
     const val glide = "4.9.0"
 
     const val debugDb = "1.0.6"
+
+    const val mockitoCore = "4.6.0"
+    const val mockitoKotlin = "3.2.0"
+    const val mockitoInline = "2.21.0"
+    const val robolectric = "4.8"
+    const val coroutinesTest = "1.6.2"
+    const val jUnit = "4.13.2"
+    const val jUnitExt = "1.1.3"
 }
 
 object BuildTools {
@@ -90,5 +98,14 @@ object Kapt {
 object DebugLibs {
     const val debugDb = "com.amitshekhar.android:debug-db:${Versions.debugDb}"
     const val chucker = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
+}
 
+object Test {
+    const val mockitoCore = "org.mockito:mockito-core:${Versions.mockitoCore}"
+    const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}"
+    const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInline}"
+    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTest}"
+    const val jUnit = "junit:junit:${Versions.jUnit}"
+    const val jUnitExt = "androidx.test.ext:junit:${Versions.jUnitExt}"
 }

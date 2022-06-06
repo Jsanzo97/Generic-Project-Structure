@@ -4,6 +4,7 @@ import arrow.core.Either
 import arrow.core.Option
 import arrow.core.left
 import arrow.core.rightIfNotNull
+import com.example.common.EMPTY_STRING
 import com.example.data.error.*
 import com.example.remote.dto.response.ErrorResponse
 import com.squareup.moshi.Moshi
@@ -45,6 +46,7 @@ internal suspend fun <T : Any> processResponse(response: Response<T>): Either<Re
 }
 
 private suspend fun checkErrorResponse(body: ResponseBody?): Option<ErrorResponse> = Either.catch {
-    Moshi.Builder().build().adapter(ErrorResponse::class.java).fromJson(body!!.string())!!
+    Moshi.Builder().build().adapter(ErrorResponse::class.java).fromJson(
+        body?.string() ?: EMPTY_STRING) ?: ErrorResponse(EMPTY_STRING, -1)
 }.toOption()
 

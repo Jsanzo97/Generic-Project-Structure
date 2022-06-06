@@ -3,9 +3,10 @@
     <!-- COMMON STRINGS -->
     <string name="loading">Cargando…</string>
     <string name="error">Algo salió mal</string>
-    <string name="success">Todo salió bien</string>
 
     <string name="custom_dialog_fragment_ok">ACEPTAR</string>
     <string name="custom_dialog_fragment_cancel">CANCELAR</string>
+
+    <string name="media_image_content_description">Imagen del título de la película</string>
 
 </resources>

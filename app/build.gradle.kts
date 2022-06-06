@@ -102,14 +102,14 @@ dependencies {
     debugImplementation(DebugLibs.debugDb)
     debugImplementation(DebugLibs.chucker)
 
-    testImplementation("org.mockito:mockito-core:4.6.0")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
-    testImplementation("org.mockito:mockito-inline:2.21.0")
-    testImplementation("org.robolectric:robolectric:4.8")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2")
+    testImplementation(Test.mockitoCore)
+    testImplementation(Test.mockitoKotlin)
+    testImplementation(Test.mockitoInline)
+    testImplementation(Test.robolectric)
+    testImplementation(Test.coroutinesTest)
+    testImplementation(Test.jUnit)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation(Test.jUnitExt)
 
     kapt(Kapt.lifecycle)
 }

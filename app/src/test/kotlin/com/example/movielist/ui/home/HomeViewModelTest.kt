@@ -1,6 +1,9 @@
 package com.example.movielist.ui.home
 
-import arrow.core.*
+import arrow.core.None
+import arrow.core.left
+import arrow.core.right
+import arrow.core.some
 import com.example.common.EMPTY_STRING
 import com.example.domain.entity.Movie
 import com.example.domain.entity.MovieResult
@@ -40,12 +43,6 @@ class HomeViewModelTest {
 
     @Spy
     private lateinit var homeViewModelStateFlow: StateFlow<HomeViewState>
-
-    @Spy
-    private var nextPageToRetrieve = 0
-
-    @Spy
-    private var lastElementRetrieved = 0
 
     private val validPage = 1
     private val invalidPage = -1
