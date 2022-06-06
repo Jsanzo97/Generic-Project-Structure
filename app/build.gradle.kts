@@ -48,6 +48,42 @@ configure<BaseAppModuleExtension> {
         buildConfigField("String", "SERVER_API_KEY", "\"3ce5fa18330f82a0e8c84eea49508b46\"")
     }
 
+    signingConfigs.apply {
+        val KEYSTORE_PASSWORD: String by project
+        val KEY_PASSWORD: String by project
+        getByName("debug") {
+            try {
+                storeFile = file("${project.rootDir}/keystore.jks")
+                storePassword = KEYSTORE_PASSWORD
+                keyAlias = "debug"
+                keyPassword = KEY_PASSWORD
+            } catch (e: Exception) {
+                throw Throwable("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+            }
+        }
+        register("release") {
+            try {
+                storeFile = file("${project.rootDir}/keystore.jks")
+                storePassword = KEYSTORE_PASSWORD
+                keyAlias = "release"
+                keyPassword = KEY_PASSWORD
+            } catch (e: Exception) {
+                throw Throwable("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+            }
+        }
+    }
+
+    buildTypes.apply {
+        getByName("debug") {
+            applicationIdSuffix = ".debug"
+            signingConfig = signingConfigs.getByName("debug")
+        }
+        getByName("release") {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+        }
+    }
 
     sourceSets.apply {
         forEach {
