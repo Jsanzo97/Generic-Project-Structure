@@ -101,8 +101,13 @@ configure<BaseAppModuleExtension> {
         }
     }
 
+    compileOptions.apply {
+        sourceCompatibility = Versions.sourceCompatibility
+        targetCompatibility = Versions.targetCompatibility
+    }
+
     packagingOptions.apply {
-        exclude("META-INF/com.android.tools/proguard/coroutines.pro")
+        resources.excludes.add("META-INF/com.android.tools/proguard/coroutines.pro")
     }
 
 }

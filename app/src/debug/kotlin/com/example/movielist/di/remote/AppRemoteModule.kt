@@ -1,32 +1,21 @@
 package com.example.movielist.di.remote
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.example.movielist.BuildConfig
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-private const val TIMEOUT = 15L
-
-val remoteModule = module {
-
-    single {
-        Retrofit.Builder()
-            .client(get())
-            .baseUrl(BuildConfig.SERVER_ENDPOINT)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-    }
+val appRemoteModule = module {
 
     single { ChuckerInterceptor(androidContext()) }
 
-    single {
+    single(named(APP_OK_HTTP_CLIENT)) {
         val chuckerInterceptor = get<ChuckerInterceptor>()
+        val basicOkHttpClient = get<OkHttpClient>(named(BASIC_OK_HTTP_CLIENT))
 
-        OkHttpClient.Builder()
+        basicOkHttpClient.newBuilder()
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
