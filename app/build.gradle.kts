@@ -34,8 +34,8 @@ configure<com.android.build.gradle.internal.dsl.BaseAppModuleExtension> {
 
     defaultConfig.apply {
         applicationId = "com.example.generic"
-        minSdkVersion(Versions.minSdk)
-        targetSdkVersion(Versions.targetSdk)
+        minSdk = Versions.minSdk
+        targetSdk = Versions.targetSdk
         versionCode = appVersionCode
         versionName = appVersionName
         resValue("string", "app_name", "@string/application_name")
