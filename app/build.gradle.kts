@@ -25,13 +25,17 @@ val versionPatch = VERSION_PATCH.toInt()
 val appVersionCode = versionMajor * 1_000_000 + versionMinor * 1_000 + versionPatch
 val appVersionName = "$versionMajor.$versionMinor.$versionPatch"
 
-android {
-    compileSdkVersion(Versions.targetSdk)
-    
-    defaultConfig {
-        applicationId = "com.example.movielist"
-        minSdkVersion(Versions.minSdk)
-        targetSdkVersion(Versions.targetSdk)
+configure<com.android.build.gradle.internal.dsl.BaseAppModuleExtension> {
+    compileSdk = Versions.targetSdk
+    lintOptions.isAbortOnError = false
+    testOptions.unitTests.apply {
+        isIncludeAndroidResources = true
+    }
+
+    defaultConfig.apply {
+        applicationId = "com.example.generic"
+        minSdk = Versions.minSdk
+        targetSdk = Versions.targetSdk
         versionCode = appVersionCode
         versionName = appVersionName
         resValue("string", "app_name", "@string/application_name")
@@ -40,7 +44,7 @@ android {
         multiDexEnabled = true
     }
 
-    signingConfigs {
+    signingConfigs.apply {
         val KEYSTORE_PASSWORD: String by project
         val KEY_PASSWORD: String by project
         getByName("debug") {
@@ -50,7 +54,7 @@ android {
                 keyAlias = "debug"
                 keyPassword = KEY_PASSWORD
             } catch (e: Exception) {
-                throw InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+                throw Throwable("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
             }
         }
         register("release") {
@@ -60,12 +64,12 @@ android {
                 keyAlias = "release"
                 keyPassword = KEY_PASSWORD
             } catch (e: Exception) {
-                throw InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+                throw Throwable("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
             }
         }
     }
 
-    buildTypes {
+    buildTypes.apply {
         getByName("debug") {
             applicationIdSuffix = ".debug"
             signingConfig = signingConfigs.getByName("debug")
@@ -77,7 +81,7 @@ android {
         }
     }
 
-    sourceSets {
+    sourceSets.apply {
         forEach {
             it.java.srcDir("src/${it.name}/kotlin")
         }
@@ -93,12 +97,17 @@ android {
         }
     }
 
-    lintOptions.isAbortOnError = false
-
-    compileOptions {
+    compileOptions.apply {
         sourceCompatibility = Versions.sourceCompatibility
         targetCompatibility = Versions.targetCompatibility
     }
+
+    packagingOptions.apply {
+        resources.excludes.add("META-INF/com.android.tools/proguard/coroutines.pro")
+    }
+
+    buildFeatures.viewBinding = true
+
 }
 
 dependencies {
