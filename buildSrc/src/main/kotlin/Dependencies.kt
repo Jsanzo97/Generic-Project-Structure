@@ -14,11 +14,11 @@ object Plugins {
 object Versions {
     const val kotlin = "1.5.30"
     const val coroutines = "1.3.2"
-    const val androidGradlePlugin = "3.5.1"
+    const val androidGradlePlugin = "7.3.0"
     const val gradleVersions = "0.25.0"
 
     const val minSdk = 23
-    const val targetSdk = 29
+    const val targetSdk = 32
 
     val sourceCompatibility = JavaVersion.VERSION_1_8
     val targetCompatibility = JavaVersion.VERSION_1_8
@@ -30,7 +30,7 @@ object Versions {
     const val lifecycle = "2.1.0"
     const val liveData = "2.4.0"
     const val room = "2.4.0-rc01"
-    const val navigation = "2.1.0"
+    const val navigation = "2.5.2"
     const val drawerLayout = "1.1.0-alpha03"
 
     const val arrow = "0.10.0"
