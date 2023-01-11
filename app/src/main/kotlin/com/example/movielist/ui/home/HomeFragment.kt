@@ -25,7 +25,9 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
     private val moviesSearchView: SearchView by lazyBindView(R.id.movies_search_view)
 
     private val onScrollListener = object: RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+
             if (recyclerView.scrollState == SCROLL_STATE_IDLE) {
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 viewModel.notifyLastElementVisible(layoutManager.findLastCompletelyVisibleItemPosition())
