@@ -28,7 +28,7 @@ class HomeFragment: CustomFragment(R.layout.home_fragment) {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
 
-            if (recyclerView.scrollState == SCROLL_STATE_IDLE) {
+            if (newState == SCROLL_STATE_IDLE) {
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 viewModel.notifyLastElementVisible(layoutManager.findLastCompletelyVisibleItemPosition())
             }
